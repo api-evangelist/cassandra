@@ -3,11 +3,11 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/cassandra/refs/heads/main/apis.yml
 name: Apache Cassandra
 tags:
-  - Database
-  - NoSQL
-  - Distributed
-  - Big Data
   - Apache
+  - Big Data
+  - Database
+  - Distributed
+  - NoSQL
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
@@ -22,8 +22,8 @@ apis:
   - aid: cassandra:cassandra-cql-api
     name: Apache Cassandra CQL API
     tags:
-      - Database
       - CQL
+      - Database
     humanURL: https://cassandra.apache.org/doc/latest/cassandra/cql/
     properties:
       - url: https://cassandra.apache.org/doc/latest/cassandra/cql/
