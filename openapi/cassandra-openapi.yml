@@ -1,0 +1,494 @@
+openapi: 3.1.0
+info:
+  title: Apache Cassandra REST API (via Stargate)
+  description: |
+    Apache Cassandra is accessed primarily via the CQL native protocol, but the
+    Stargate data gateway (stargate.io) exposes a documented HTTP REST API that
+    sits in front of Cassandra. This best-effort OpenAPI captures the Stargate v2
+    REST endpoints for keyspace, table, column, index, type, and row management.
+    Source: https://stargate.io/docs/latest/develop/dev-with-rest.html
+  version: "2.0.0"
+  contact:
+    name: Apache Cassandra / Stargate
+    url: https://cassandra.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://{host}:8082
+    description: Stargate REST API endpoint in front of a Cassandra cluster
+    variables:
+      host:
+        default: localhost
+security:
+  - cassandraToken: []
+tags:
+  - name: Keyspaces
+  - name: Tables
+  - name: Columns
+  - name: Indexes
+  - name: Types
+  - name: Rows
+paths:
+  /v2/schemas/keyspaces:
+    get:
+      tags: [Keyspaces]
+      summary: List all keyspaces
+      operationId: listKeyspaces
+      responses:
+        '200':
+          description: Keyspace list
+    post:
+      tags: [Keyspaces]
+      summary: Create a keyspace
+      operationId: createKeyspace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                replicas:
+                  type: integer
+                datacenters:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      replicas:
+                        type: integer
+      responses:
+        '201':
+          description: Keyspace created
+  /v2/schemas/keyspaces/{keyspace}:
+    get:
+      tags: [Keyspaces]
+      summary: Get a keyspace
+      operationId: getKeyspace
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+      responses:
+        '200':
+          description: Keyspace
+    delete:
+      tags: [Keyspaces]
+      summary: Delete a keyspace
+      operationId: deleteKeyspace
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+      responses:
+        '204':
+          description: Deleted
+  /v2/schemas/keyspaces/{keyspace}/tables:
+    get:
+      tags: [Tables]
+      summary: List tables in a keyspace
+      operationId: listTables
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+      responses:
+        '200':
+          description: Table list
+    post:
+      tags: [Tables]
+      summary: Create a table
+      operationId: createTable
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                columnDefinitions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      typeDefinition:
+                        type: string
+                      static:
+                        type: boolean
+                primaryKey:
+                  type: object
+                  properties:
+                    partitionKey:
+                      type: array
+                      items:
+                        type: string
+                    clusteringKey:
+                      type: array
+                      items:
+                        type: string
+      responses:
+        '201':
+          description: Table created
+  /v2/schemas/keyspaces/{keyspace}/tables/{table}:
+    get:
+      tags: [Tables]
+      summary: Get a table definition
+      operationId: getTable
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+      responses:
+        '200':
+          description: Table definition
+    delete:
+      tags: [Tables]
+      summary: Delete a table
+      operationId: deleteTable
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+      responses:
+        '204':
+          description: Deleted
+  /v2/schemas/keyspaces/{keyspace}/tables/{table}/columns:
+    get:
+      tags: [Columns]
+      summary: List columns of a table
+      operationId: listColumns
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+      responses:
+        '200':
+          description: Column list
+    post:
+      tags: [Columns]
+      summary: Add a column to a table
+      operationId: addColumn
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                typeDefinition:
+                  type: string
+                static:
+                  type: boolean
+      responses:
+        '201':
+          description: Column added
+  /v2/schemas/keyspaces/{keyspace}/tables/{table}/columns/{column}:
+    get:
+      tags: [Columns]
+      summary: Get a column
+      operationId: getColumn
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+        - $ref: '#/components/parameters/Column'
+      responses:
+        '200':
+          description: Column
+    put:
+      tags: [Columns]
+      summary: Modify a column
+      operationId: updateColumn
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+        - $ref: '#/components/parameters/Column'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                newName:
+                  type: string
+      responses:
+        '200':
+          description: Column updated
+    delete:
+      tags: [Columns]
+      summary: Delete a column
+      operationId: deleteColumn
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+        - $ref: '#/components/parameters/Column'
+      responses:
+        '204':
+          description: Deleted
+  /v2/schemas/keyspaces/{keyspace}/tables/{table}/indexes:
+    get:
+      tags: [Indexes]
+      summary: List secondary indexes on a table
+      operationId: listIndexes
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+      responses:
+        '200':
+          description: Index list
+    post:
+      tags: [Indexes]
+      summary: Create a secondary index
+      operationId: createIndex
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                column:
+                  type: string
+                name:
+                  type: string
+                ifNotExists:
+                  type: boolean
+                kind:
+                  type: string
+                  enum: [VALUES, KEYS, ENTRIES, FULL]
+                type:
+                  type: string
+      responses:
+        '201':
+          description: Index created
+  /v2/schemas/keyspaces/{keyspace}/tables/{table}/indexes/{index}:
+    delete:
+      tags: [Indexes]
+      summary: Delete a secondary index
+      operationId: deleteIndex
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+        - in: path
+          name: index
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Deleted
+  /v2/schemas/keyspaces/{keyspace}/types:
+    get:
+      tags: [Types]
+      summary: List user-defined types
+      operationId: listTypes
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+      responses:
+        '200':
+          description: UDT list
+    post:
+      tags: [Types]
+      summary: Create a user-defined type
+      operationId: createType
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                fields:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      typeDefinition:
+                        type: string
+      responses:
+        '201':
+          description: UDT created
+  /v2/schemas/keyspaces/{keyspace}/types/{type}:
+    delete:
+      tags: [Types]
+      summary: Delete a user-defined type
+      operationId: deleteType
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - in: path
+          name: type
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Deleted
+  /v2/keyspaces/{keyspace}/{table}:
+    get:
+      tags: [Rows]
+      summary: Query rows in a table with a WHERE clause
+      operationId: queryRows
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+        - in: query
+          name: where
+          schema:
+            type: string
+            description: JSON-encoded WHERE clause
+        - in: query
+          name: fields
+          schema:
+            type: string
+        - in: query
+          name: page-size
+          schema:
+            type: integer
+        - in: query
+          name: page-state
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Row page
+    post:
+      tags: [Rows]
+      summary: Insert a row
+      operationId: insertRow
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Row inserted
+  /v2/keyspaces/{keyspace}/{table}/rows:
+    get:
+      tags: [Rows]
+      summary: Retrieve all rows (paged)
+      operationId: getAllRows
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+        - in: query
+          name: page-size
+          schema:
+            type: integer
+        - in: query
+          name: page-state
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Row page
+  /v2/keyspaces/{keyspace}/{table}/{primaryKey}:
+    get:
+      tags: [Rows]
+      summary: Get a row by primary key
+      operationId: getRow
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+        - $ref: '#/components/parameters/PrimaryKey'
+      responses:
+        '200':
+          description: Row
+    put:
+      tags: [Rows]
+      summary: Replace a row (upsert)
+      operationId: replaceRow
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+        - $ref: '#/components/parameters/PrimaryKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Row replaced
+    patch:
+      tags: [Rows]
+      summary: Partially update a row
+      operationId: updateRow
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+        - $ref: '#/components/parameters/PrimaryKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Row updated
+    delete:
+      tags: [Rows]
+      summary: Delete a row
+      operationId: deleteRow
+      parameters:
+        - $ref: '#/components/parameters/Keyspace'
+        - $ref: '#/components/parameters/Table'
+        - $ref: '#/components/parameters/PrimaryKey'
+      responses:
+        '204':
+          description: Deleted
+components:
+  parameters:
+    Keyspace:
+      in: path
+      name: keyspace
+      required: true
+      schema:
+        type: string
+    Table:
+      in: path
+      name: table
+      required: true
+      schema:
+        type: string
+    Column:
+      in: path
+      name: column
+      required: true
+      schema:
+        type: string
+    PrimaryKey:
+      in: path
+      name: primaryKey
+      required: true
+      description: One or more path segments forming the primary key
+      schema:
+        type: string
+  securitySchemes:
+    cassandraToken:
+      type: apiKey
+      in: header
+      name: X-Cassandra-Token
