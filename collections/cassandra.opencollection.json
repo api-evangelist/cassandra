@@ -1,0 +1,720 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Cassandra REST API (via Stargate)",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cassandra-Token",
+      "value": "{{X-Cassandra-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Keyspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all keyspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces"
+          },
+          "docs": "List all keyspaces"
+        },
+        {
+          "info": {
+            "name": "Create a keyspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:8082/v2/schemas/keyspaces",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a keyspace"
+        },
+        {
+          "info": {
+            "name": "Get a keyspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a keyspace"
+        },
+        {
+          "info": {
+            "name": "Delete a keyspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a keyspace"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tables in a keyspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List tables in a keyspace"
+        },
+        {
+          "info": {
+            "name": "Create a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a table"
+        },
+        {
+          "info": {
+            "name": "Get a table definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a table definition"
+        },
+        {
+          "info": {
+            "name": "Delete a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a table"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Columns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List columns of a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/columns",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List columns of a table"
+        },
+        {
+          "info": {
+            "name": "Add a column to a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/columns",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a column to a table"
+        },
+        {
+          "info": {
+            "name": "Get a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/columns/:column",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "column",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a column"
+        },
+        {
+          "info": {
+            "name": "Modify a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/columns/:column",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "column",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a column"
+        },
+        {
+          "info": {
+            "name": "Delete a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/columns/:column",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "column",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a column"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Indexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List secondary indexes on a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/indexes",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List secondary indexes on a table"
+        },
+        {
+          "info": {
+            "name": "Create a secondary index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/indexes",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a secondary index"
+        },
+        {
+          "info": {
+            "name": "Delete a secondary index",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/indexes/:index",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a secondary index"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List user-defined types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/types",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List user-defined types"
+        },
+        {
+          "info": {
+            "name": "Create a user-defined type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/types",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a user-defined type"
+        },
+        {
+          "info": {
+            "name": "Delete a user-defined type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/types/:type",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a user-defined type"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query rows in a table with a WHERE clause",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page-state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query rows in a table with a WHERE clause"
+        },
+        {
+          "info": {
+            "name": "Insert a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Insert a row"
+        },
+        {
+          "info": {
+            "name": "Retrieve all rows (paged)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table/rows",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page-state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all rows (paged)"
+        },
+        {
+          "info": {
+            "name": "Get a row by primary key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table/:primaryKey",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "primaryKey",
+                "value": "",
+                "type": "path",
+                "description": "One or more path segments forming the primary key"
+              }
+            ]
+          },
+          "docs": "Get a row by primary key"
+        },
+        {
+          "info": {
+            "name": "Replace a row (upsert)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table/:primaryKey",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "primaryKey",
+                "value": "",
+                "type": "path",
+                "description": "One or more path segments forming the primary key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a row (upsert)"
+        },
+        {
+          "info": {
+            "name": "Partially update a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table/:primaryKey",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "primaryKey",
+                "value": "",
+                "type": "path",
+                "description": "One or more path segments forming the primary key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a row"
+        },
+        {
+          "info": {
+            "name": "Delete a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table/:primaryKey",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "primaryKey",
+                "value": "",
+                "type": "path",
+                "description": "One or more path segments forming the primary key"
+              }
+            ]
+          },
+          "docs": "Delete a row"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
