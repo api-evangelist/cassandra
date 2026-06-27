@@ -3,19 +3,12 @@
   "feeds": [
     {
       "source": "https://cassandra.apache.org/blog/",
-      "feed_url": "https://cassandra.apache.org/blog/",
-      "title": "",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
-    },
-    {
-      "source": "https://issues.apache.org/jira/projects/CASSANDRA",
-      "feed_url": "https://issues.apache.org/jira/projects/CASSANDRA",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:31:14Z",
+  "agent_pulled": "2026-06-27"
 }
