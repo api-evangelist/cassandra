@@ -128,6 +128,8 @@ apis:
     administering Cassandra nodes, including metrics, compaction, repairs,
     and configuration.
 common:
+- type: AgenticAccess
+  url: agentic-access/cassandra-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/cassandra-vulnerability-disclosure.yml
 - type: DomainSecurity
