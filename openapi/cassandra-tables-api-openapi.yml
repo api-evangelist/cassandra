@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: Apache Cassandra REST API (via Stargate) Columns Tables API
+  description: 'Apache Cassandra is accessed primarily via the CQL native protocol, but the
+
+    Stargate data gateway (stargate.io) exposes a documented HTTP REST API that
+
+    sits in front of Cassandra. This best-effort OpenAPI captures the Stargate v2
+
+    REST endpoints for keyspace, table, column, index, type, and row management.
+
+    Source: https://stargate.io/docs/latest/develop/dev-with-rest.html
+
+    '
+  version: 2.0.0
+  contact:
+    name: Apache Cassandra / Stargate
+    url: https://cassandra.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: http://{host}:8082
+  description: Stargate REST API endpoint in front of a Cassandra cluster
+  variables:
+    host:
+      default: localhost
+security:
+- cassandraToken: []
+tags:
+- name: Tables
+paths:
+  /v2/schemas/keyspaces/{keyspace}/tables:
+    get:
+      tags:
+      - Tables
+      summary: List tables in a keyspace
+      operationId: listTables
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      responses:
+        '200':
+          description: Table list
+    post:
+      tags:
+      - Tables
+      summary: Create a table
+      operationId: createTable
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                columnDefinitions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      typeDefinition:
+                        type: string
+                      static:
+                        type: boolean
+                primaryKey:
+                  type: object
+                  properties:
+                    partitionKey:
+                      type: array
+                      items:
+                        type: string
+                    clusteringKey:
+                      type: array
+                      items:
+                        type: string
+      responses:
+        '201':
+          description: Table created
+  /v2/schemas/keyspaces/{keyspace}/tables/{table}:
+    get:
+      tags:
+      - Tables
+      summary: Get a table definition
+      operationId: getTable
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      responses:
+        '200':
+          description: Table definition
+    delete:
+      tags:
+      - Tables
+      summary: Delete a table
+      operationId: deleteTable
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      responses:
+        '204':
+          description: Deleted
+components:
+  parameters:
+    Keyspace:
+      in: path
+      name: keyspace
+      required: true
+      schema:
+        type: string
+    Table:
+      in: path
+      name: table
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    cassandraToken:
+      type: apiKey
+      in: header
+      name: X-Cassandra-Token

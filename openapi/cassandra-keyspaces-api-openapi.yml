@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: Apache Cassandra REST API (via Stargate) Columns Keyspaces API
+  description: 'Apache Cassandra is accessed primarily via the CQL native protocol, but the
+
+    Stargate data gateway (stargate.io) exposes a documented HTTP REST API that
+
+    sits in front of Cassandra. This best-effort OpenAPI captures the Stargate v2
+
+    REST endpoints for keyspace, table, column, index, type, and row management.
+
+    Source: https://stargate.io/docs/latest/develop/dev-with-rest.html
+
+    '
+  version: 2.0.0
+  contact:
+    name: Apache Cassandra / Stargate
+    url: https://cassandra.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: http://{host}:8082
+  description: Stargate REST API endpoint in front of a Cassandra cluster
+  variables:
+    host:
+      default: localhost
+security:
+- cassandraToken: []
+tags:
+- name: Keyspaces
+paths:
+  /v2/schemas/keyspaces:
+    get:
+      tags:
+      - Keyspaces
+      summary: List all keyspaces
+      operationId: listKeyspaces
+      responses:
+        '200':
+          description: Keyspace list
+    post:
+      tags:
+      - Keyspaces
+      summary: Create a keyspace
+      operationId: createKeyspace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                replicas:
+                  type: integer
+                datacenters:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      replicas:
+                        type: integer
+      responses:
+        '201':
+          description: Keyspace created
+  /v2/schemas/keyspaces/{keyspace}:
+    get:
+      tags:
+      - Keyspaces
+      summary: Get a keyspace
+      operationId: getKeyspace
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      responses:
+        '200':
+          description: Keyspace
+    delete:
+      tags:
+      - Keyspaces
+      summary: Delete a keyspace
+      operationId: deleteKeyspace
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      responses:
+        '204':
+          description: Deleted
+components:
+  parameters:
+    Keyspace:
+      in: path
+      name: keyspace
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    cassandraToken:
+      type: apiKey
+      in: header
+      name: X-Cassandra-Token

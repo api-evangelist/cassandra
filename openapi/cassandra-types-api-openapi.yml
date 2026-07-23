@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Apache Cassandra REST API (via Stargate) Columns Types API
+  description: 'Apache Cassandra is accessed primarily via the CQL native protocol, but the
+
+    Stargate data gateway (stargate.io) exposes a documented HTTP REST API that
+
+    sits in front of Cassandra. This best-effort OpenAPI captures the Stargate v2
+
+    REST endpoints for keyspace, table, column, index, type, and row management.
+
+    Source: https://stargate.io/docs/latest/develop/dev-with-rest.html
+
+    '
+  version: 2.0.0
+  contact:
+    name: Apache Cassandra / Stargate
+    url: https://cassandra.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: http://{host}:8082
+  description: Stargate REST API endpoint in front of a Cassandra cluster
+  variables:
+    host:
+      default: localhost
+security:
+- cassandraToken: []
+tags:
+- name: Types
+paths:
+  /v2/schemas/keyspaces/{keyspace}/types:
+    get:
+      tags:
+      - Types
+      summary: List user-defined types
+      operationId: listTypes
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      responses:
+        '200':
+          description: UDT list
+    post:
+      tags:
+      - Types
+      summary: Create a user-defined type
+      operationId: createType
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                fields:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      typeDefinition:
+                        type: string
+      responses:
+        '201':
+          description: UDT created
+  /v2/schemas/keyspaces/{keyspace}/types/{type}:
+    delete:
+      tags:
+      - Types
+      summary: Delete a user-defined type
+      operationId: deleteType
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - in: path
+        name: type
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+components:
+  parameters:
+    Keyspace:
+      in: path
+      name: keyspace
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    cassandraToken:
+      type: apiKey
+      in: header
+      name: X-Cassandra-Token

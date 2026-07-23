@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: Apache Cassandra REST API (via Stargate) Columns API
+  description: 'Apache Cassandra is accessed primarily via the CQL native protocol, but the
+
+    Stargate data gateway (stargate.io) exposes a documented HTTP REST API that
+
+    sits in front of Cassandra. This best-effort OpenAPI captures the Stargate v2
+
+    REST endpoints for keyspace, table, column, index, type, and row management.
+
+    Source: https://stargate.io/docs/latest/develop/dev-with-rest.html
+
+    '
+  version: 2.0.0
+  contact:
+    name: Apache Cassandra / Stargate
+    url: https://cassandra.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: http://{host}:8082
+  description: Stargate REST API endpoint in front of a Cassandra cluster
+  variables:
+    host:
+      default: localhost
+security:
+- cassandraToken: []
+tags:
+- name: Columns
+paths:
+  /v2/schemas/keyspaces/{keyspace}/tables/{table}/columns:
+    get:
+      tags:
+      - Columns
+      summary: List columns of a table
+      operationId: listColumns
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      responses:
+        '200':
+          description: Column list
+    post:
+      tags:
+      - Columns
+      summary: Add a column to a table
+      operationId: addColumn
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                typeDefinition:
+                  type: string
+                static:
+                  type: boolean
+      responses:
+        '201':
+          description: Column added
+  /v2/schemas/keyspaces/{keyspace}/tables/{table}/columns/{column}:
+    get:
+      tags:
+      - Columns
+      summary: Get a column
+      operationId: getColumn
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      - $ref: '#/components/parameters/Column'
+      responses:
+        '200':
+          description: Column
+    put:
+      tags:
+      - Columns
+      summary: Modify a column
+      operationId: updateColumn
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      - $ref: '#/components/parameters/Column'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                newName:
+                  type: string
+      responses:
+        '200':
+          description: Column updated
+    delete:
+      tags:
+      - Columns
+      summary: Delete a column
+      operationId: deleteColumn
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      - $ref: '#/components/parameters/Column'
+      responses:
+        '204':
+          description: Deleted
+components:
+  parameters:
+    Column:
+      in: path
+      name: column
+      required: true
+      schema:
+        type: string
+    Keyspace:
+      in: path
+      name: keyspace
+      required: true
+      schema:
+        type: string
+    Table:
+      in: path
+      name: table
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    cassandraToken:
+      type: apiKey
+      in: header
+      name: X-Cassandra-Token

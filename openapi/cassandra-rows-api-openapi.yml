@@ -1,0 +1,186 @@
+openapi: 3.1.0
+info:
+  title: Apache Cassandra REST API (via Stargate) Columns Rows API
+  description: 'Apache Cassandra is accessed primarily via the CQL native protocol, but the
+
+    Stargate data gateway (stargate.io) exposes a documented HTTP REST API that
+
+    sits in front of Cassandra. This best-effort OpenAPI captures the Stargate v2
+
+    REST endpoints for keyspace, table, column, index, type, and row management.
+
+    Source: https://stargate.io/docs/latest/develop/dev-with-rest.html
+
+    '
+  version: 2.0.0
+  contact:
+    name: Apache Cassandra / Stargate
+    url: https://cassandra.apache.org/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: http://{host}:8082
+  description: Stargate REST API endpoint in front of a Cassandra cluster
+  variables:
+    host:
+      default: localhost
+security:
+- cassandraToken: []
+tags:
+- name: Rows
+paths:
+  /v2/keyspaces/{keyspace}/{table}:
+    get:
+      tags:
+      - Rows
+      summary: Query rows in a table with a WHERE clause
+      operationId: queryRows
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      - in: query
+        name: where
+        schema:
+          type: string
+          description: JSON-encoded WHERE clause
+      - in: query
+        name: fields
+        schema:
+          type: string
+      - in: query
+        name: page-size
+        schema:
+          type: integer
+      - in: query
+        name: page-state
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Row page
+    post:
+      tags:
+      - Rows
+      summary: Insert a row
+      operationId: insertRow
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Row inserted
+  /v2/keyspaces/{keyspace}/{table}/rows:
+    get:
+      tags:
+      - Rows
+      summary: Retrieve all rows (paged)
+      operationId: getAllRows
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      - in: query
+        name: page-size
+        schema:
+          type: integer
+      - in: query
+        name: page-state
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Row page
+  /v2/keyspaces/{keyspace}/{table}/{primaryKey}:
+    get:
+      tags:
+      - Rows
+      summary: Get a row by primary key
+      operationId: getRow
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      - $ref: '#/components/parameters/PrimaryKey'
+      responses:
+        '200':
+          description: Row
+    put:
+      tags:
+      - Rows
+      summary: Replace a row (upsert)
+      operationId: replaceRow
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      - $ref: '#/components/parameters/PrimaryKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Row replaced
+    patch:
+      tags:
+      - Rows
+      summary: Partially update a row
+      operationId: updateRow
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      - $ref: '#/components/parameters/PrimaryKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Row updated
+    delete:
+      tags:
+      - Rows
+      summary: Delete a row
+      operationId: deleteRow
+      parameters:
+      - $ref: '#/components/parameters/Keyspace'
+      - $ref: '#/components/parameters/Table'
+      - $ref: '#/components/parameters/PrimaryKey'
+      responses:
+        '204':
+          description: Deleted
+components:
+  parameters:
+    Keyspace:
+      in: path
+      name: keyspace
+      required: true
+      schema:
+        type: string
+    Table:
+      in: path
+      name: table
+      required: true
+      schema:
+        type: string
+    PrimaryKey:
+      in: path
+      name: primaryKey
+      required: true
+      description: One or more path segments forming the primary key
+      schema:
+        type: string
+  securitySchemes:
+    cassandraToken:
+      type: apiKey
+      in: header
+      name: X-Cassandra-Token
