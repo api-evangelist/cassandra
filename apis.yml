@@ -10,7 +10,20 @@ tags:
 - NoSQL
 - Open Source
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cassandra.png
 access: 3rd-Party
 created: '2024-01-01'
 modified: '2026-04-23'
@@ -40,9 +53,8 @@ apis:
   - url: https://cassandra.apache.org/doc/latest/cassandra/cql/ddl.html
     type: Reference
   description: >-
-    Cassandra Query Language (CQL) is the primary interface to Apache
-    Cassandra. Clients speak the binary CQL native protocol over TCP
-    (default port 9042). Official drivers are maintained for Java, Python,
+    Cassandra Query Language (CQL) is the primary interface to Apache Cassandra. Clients speak the binary
+    CQL native protocol over TCP (default port 9042). Official drivers are maintained for Java, Python,
     Go, C/C++, C#, Node.js, Ruby, and Rust.
 - aid: cassandra:cassandra-rest-api-stargate
   name: Cassandra REST API (Stargate)
@@ -59,9 +71,8 @@ apis:
   - url: https://github.com/stargate/stargate
     type: SourceCode
   description: >-
-    HTTP/JSON REST API for Cassandra provided by the Stargate data gateway.
-    Enables CRUD operations and SQL-like query via REST without the CQL
-    driver.
+    HTTP/JSON REST API for Cassandra provided by the Stargate data gateway. Enables CRUD operations and
+    SQL-like query via REST without the CQL driver.
 - aid: cassandra:cassandra-graphql-api-stargate
   name: Cassandra GraphQL API (Stargate)
   tags:
@@ -77,8 +88,8 @@ apis:
   - url: graphql/cassandra-graphql.md
     type: GraphQL
   description: >-
-    GraphQL endpoint for Cassandra, enabling flexible, typed queries and
-    mutations against Cassandra tables through the Stargate gateway.
+    GraphQL endpoint for Cassandra, enabling flexible, typed queries and mutations against Cassandra tables
+    through the Stargate gateway.
 - aid: cassandra:cassandra-document-api-stargate
   name: Cassandra Document API (Stargate)
   tags:
@@ -93,8 +104,8 @@ apis:
   - url: https://stargate.io/docs/latest/develop/api-doc/doc-using.html
     type: Reference
   description: >-
-    Schemaless Document API that stores JSON documents in Cassandra,
-    offering a MongoDB-like developer experience backed by Cassandra.
+    Schemaless Document API that stores JSON documents in Cassandra, offering a MongoDB-like developer
+    experience backed by Cassandra.
 - aid: cassandra:cassandra-grpc-api-stargate
   name: Cassandra gRPC API (Stargate)
   tags:
@@ -108,8 +119,8 @@ apis:
   - url: https://github.com/stargate/stargate/tree/main/grpc/proto
     type: Protocol
   description: >-
-    High-performance gRPC API for Cassandra through Stargate, designed for
-    low-latency service-to-service communication.
+    High-performance gRPC API for Cassandra through Stargate, designed for low-latency service-to-service
+    communication.
 - aid: cassandra:cassandra-jmx-metrics
   name: Cassandra JMX Management Interface
   tags:
@@ -124,9 +135,62 @@ apis:
   - url: https://cassandra.apache.org/doc/latest/cassandra/operating/
     type: OperationsGuide
   description: >-
-    Java Management Extensions (JMX) interface for monitoring and
-    administering Cassandra nodes, including metrics, compaction, repairs,
-    and configuration.
+    Java Management Extensions (JMX) interface for monitoring and administering Cassandra nodes, including
+    metrics, compaction, repairs, and configuration.
+- aid: cassandra:cassandra-columns-api
+  name: Apache Cassandra Columns API
+  description: The Columns API from Apache Cassandra — 2 operation(s) for columns.
+  humanURL: https://cassandra.apache.org/doc/latest/cassandra/cql/
+  tags:
+  - Columns
+  properties:
+  - type: OpenAPI
+    url: openapi/cassandra-columns-api-openapi.yml
+- aid: cassandra:cassandra-indexes-api
+  name: Apache Cassandra Indexes API
+  description: The Indexes API from Apache Cassandra — 2 operation(s) for indexes.
+  humanURL: https://cassandra.apache.org/doc/latest/cassandra/cql/
+  tags:
+  - Indexes
+  properties:
+  - type: OpenAPI
+    url: openapi/cassandra-indexes-api-openapi.yml
+- aid: cassandra:cassandra-keyspaces-api
+  name: Apache Cassandra Keyspaces API
+  description: The Keyspaces API from Apache Cassandra — 2 operation(s) for keyspaces.
+  humanURL: https://cassandra.apache.org/doc/latest/cassandra/cql/
+  tags:
+  - Keyspaces
+  properties:
+  - type: OpenAPI
+    url: openapi/cassandra-keyspaces-api-openapi.yml
+- aid: cassandra:cassandra-rows-api
+  name: Apache Cassandra Rows API
+  description: The Rows API from Apache Cassandra — 3 operation(s) for rows.
+  humanURL: https://cassandra.apache.org/doc/latest/cassandra/cql/
+  tags:
+  - Rows
+  properties:
+  - type: OpenAPI
+    url: openapi/cassandra-rows-api-openapi.yml
+- aid: cassandra:cassandra-tables-api
+  name: Apache Cassandra Tables API
+  description: The Tables API from Apache Cassandra — 2 operation(s) for tables.
+  humanURL: https://cassandra.apache.org/doc/latest/cassandra/cql/
+  tags:
+  - Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/cassandra-tables-api-openapi.yml
+- aid: cassandra:cassandra-types-api
+  name: Apache Cassandra Types API
+  description: The Types API from Apache Cassandra — 2 operation(s) for types.
+  humanURL: https://cassandra.apache.org/doc/latest/cassandra/cql/
+  tags:
+  - Types
+  properties:
+  - type: OpenAPI
+    url: openapi/cassandra-types-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/cassandra-agentic-access.yml
