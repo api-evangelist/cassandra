@@ -1,0 +1,24 @@
+{
+  "provider": "cassandra",
+  "sources": [
+    "cassandra-columns-api-openapi.yml",
+    "cassandra-indexes-api-openapi.yml",
+    "cassandra-keyspaces-api-openapi.yml",
+    "cassandra-rows-api-openapi.yml",
+    "cassandra-tables-api-openapi.yml",
+    "cassandra-types-api-openapi.yml"
+  ],
+  "outputs": [
+    "cassandra-columns-api-openapi.yml",
+    "cassandra-indexes-api-openapi.yml",
+    "cassandra-keyspaces-api-openapi.yml",
+    "cassandra-rows-api-openapi.yml",
+    "cassandra-tables-api-openapi.yml",
+    "cassandra-types-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
