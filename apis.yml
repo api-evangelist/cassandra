@@ -192,6 +192,12 @@ apis:
   - type: OpenAPI
     url: openapi/cassandra-types-api-openapi.yml
 common:
+- type: SecurityPolicy
+  url: https://github.com/apache/cassandra/blob/trunk/SECURITY.md
+- type: CodeOfConduct
+  url: https://github.com/apache/.github/blob/main/.github/CODE_OF_CONDUCT.md
+- type: ContributionGuide
+  url: https://github.com/apache/cassandra/blob/trunk/CONTRIBUTING.md
 - type: AgenticAccess
   url: agentic-access/cassandra-agentic-access.yml
 - type: VulnerabilityDisclosure
