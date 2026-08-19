@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Cassandra REST API (via Stargate) Columns API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cassandra-Token",
+      "value": "{{X-Cassandra-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Columns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List columns of a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/columns",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List columns of a table"
+        },
+        {
+          "info": {
+            "name": "Add a column to a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/columns",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a column to a table"
+        },
+        {
+          "info": {
+            "name": "Get a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/columns/:column",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "column",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a column"
+        },
+        {
+          "info": {
+            "name": "Modify a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/columns/:column",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "column",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a column"
+        },
+        {
+          "info": {
+            "name": "Delete a column",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/columns/:column",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "column",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a column"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Cassandra REST API (via Stargate) Columns Tables API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cassandra-Token",
+      "value": "{{X-Cassandra-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tables in a keyspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List tables in a keyspace"
+        },
+        {
+          "info": {
+            "name": "Create a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a table"
+        },
+        {
+          "info": {
+            "name": "Get a table definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a table definition"
+        },
+        {
+          "info": {
+            "name": "Delete a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a table"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

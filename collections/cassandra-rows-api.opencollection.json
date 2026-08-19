@@ -1,0 +1,253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Cassandra REST API (via Stargate) Columns Rows API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cassandra-Token",
+      "value": "{{X-Cassandra-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query rows in a table with a WHERE clause",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page-state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query rows in a table with a WHERE clause"
+        },
+        {
+          "info": {
+            "name": "Insert a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Insert a row"
+        },
+        {
+          "info": {
+            "name": "Retrieve all rows (paged)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table/rows",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page-state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all rows (paged)"
+        },
+        {
+          "info": {
+            "name": "Get a row by primary key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table/:primaryKey",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "primaryKey",
+                "value": "",
+                "type": "path",
+                "description": "One or more path segments forming the primary key"
+              }
+            ]
+          },
+          "docs": "Get a row by primary key"
+        },
+        {
+          "info": {
+            "name": "Replace a row (upsert)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table/:primaryKey",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "primaryKey",
+                "value": "",
+                "type": "path",
+                "description": "One or more path segments forming the primary key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a row (upsert)"
+        },
+        {
+          "info": {
+            "name": "Partially update a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table/:primaryKey",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "primaryKey",
+                "value": "",
+                "type": "path",
+                "description": "One or more path segments forming the primary key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a row"
+        },
+        {
+          "info": {
+            "name": "Delete a row",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:8082/v2/keyspaces/:keyspace/:table/:primaryKey",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "primaryKey",
+                "value": "",
+                "type": "path",
+                "description": "One or more path segments forming the primary key"
+              }
+            ]
+          },
+          "docs": "Delete a row"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

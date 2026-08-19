@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Cassandra REST API (via Stargate) Columns Indexes API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cassandra-Token",
+      "value": "{{X-Cassandra-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Indexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List secondary indexes on a table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/indexes",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List secondary indexes on a table"
+        },
+        {
+          "info": {
+            "name": "Create a secondary index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/indexes",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a secondary index"
+        },
+        {
+          "info": {
+            "name": "Delete a secondary index",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace/tables/:table/indexes/:index",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "index",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a secondary index"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Cassandra REST API (via Stargate) Columns Keyspaces API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Cassandra-Token",
+      "value": "{{X-Cassandra-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Keyspaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all keyspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces"
+          },
+          "docs": "List all keyspaces"
+        },
+        {
+          "info": {
+            "name": "Create a keyspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:8082/v2/schemas/keyspaces",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a keyspace"
+        },
+        {
+          "info": {
+            "name": "Get a keyspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a keyspace"
+        },
+        {
+          "info": {
+            "name": "Delete a keyspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:8082/v2/schemas/keyspaces/:keyspace",
+            "params": [
+              {
+                "name": "keyspace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a keyspace"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
