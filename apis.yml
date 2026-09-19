@@ -115,6 +115,11 @@ apis:
   name: Cassandra Document API (Stargate)
   tags:
   - Database
+  - Documents
+  - JSON
+  - Stargate
+  tags_raw:
+  - Database
   - Document
   - JSON
   - Stargate
@@ -172,6 +177,8 @@ apis:
   description: The Indexes API from Apache Cassandra — 2 operation(s) for indexes.
   humanURL: https://cassandra.apache.org/doc/latest/cassandra/cql/
   tags:
+  - Index
+  tags_raw:
   - Indexes
   properties:
   - type: OpenAPI
