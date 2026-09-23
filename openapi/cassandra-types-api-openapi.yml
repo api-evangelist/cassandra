@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Apache Cassandra REST API (via Stargate) Columns Types API
+  title: Apache Cassandra REST API (via Stargate) Types API
   description: 'Apache Cassandra is accessed primarily via the CQL native protocol, but the
 
     Stargate data gateway (stargate.io) exposes a documented HTTP REST API that
@@ -9,9 +9,7 @@ info:
 
     REST endpoints for keyspace, table, column, index, type, and row management.
 
-    Source: https://stargate.io/docs/latest/develop/dev-with-rest.html
-
-    '
+    Source: https://stargate.io/docs/latest/develop/dev-with-rest.html'
   version: 2.0.0
   contact:
     name: Apache Cassandra / Stargate

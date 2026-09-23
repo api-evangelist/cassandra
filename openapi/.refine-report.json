@@ -1,12 +1,7 @@
 {
   "provider": "cassandra",
   "sources": [
-    "cassandra-columns-api-openapi.yml",
-    "cassandra-indexes-api-openapi.yml",
-    "cassandra-keyspaces-api-openapi.yml",
-    "cassandra-rows-api-openapi.yml",
-    "cassandra-tables-api-openapi.yml",
-    "cassandra-types-api-openapi.yml"
+    "_original/cassandra-openapi.yml"
   ],
   "outputs": [
     "cassandra-columns-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cassandra-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "cassandra-columns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cassandra-indexes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cassandra-keyspaces-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cassandra-rows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cassandra-tables-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cassandra-types-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
