@@ -158,6 +158,12 @@ paths:
           description: Deleted
 components:
   parameters:
+    Keyspace:
+      in: path
+      name: keyspace
+      required: true
+      schema:
+        type: string
     PrimaryKey:
       in: path
       name: primaryKey
@@ -168,12 +174,6 @@ components:
     Table:
       in: path
       name: table
-      required: true
-      schema:
-        type: string
-    Keyspace:
-      in: path
-      name: keyspace
       required: true
       schema:
         type: string

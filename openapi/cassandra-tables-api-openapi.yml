@@ -105,15 +105,15 @@ paths:
           description: Deleted
 components:
   parameters:
-    Table:
-      in: path
-      name: table
-      required: true
-      schema:
-        type: string
     Keyspace:
       in: path
       name: keyspace
+      required: true
+      schema:
+        type: string
+    Table:
+      in: path
+      name: table
       required: true
       schema:
         type: string
