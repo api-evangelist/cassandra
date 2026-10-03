@@ -112,15 +112,15 @@ paths:
           description: Deleted
 components:
   parameters:
-    Column:
-      in: path
-      name: column
-      required: true
-      schema:
-        type: string
     Keyspace:
       in: path
       name: keyspace
+      required: true
+      schema:
+        type: string
+    Column:
+      in: path
+      name: column
       required: true
       schema:
         type: string
