@@ -118,15 +118,15 @@ components:
       required: true
       schema:
         type: string
-    Column:
-      in: path
-      name: column
-      required: true
-      schema:
-        type: string
     Table:
       in: path
       name: table
+      required: true
+      schema:
+        type: string
+    Column:
+      in: path
+      name: column
       required: true
       schema:
         type: string
