@@ -226,6 +226,12 @@ apis:
   - type: OpenAPI
     url: openapi/cassandra-types-api-openapi.yml
 common:
+- type: Plans
+  url: plans/cassandra-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/cassandra-rate-limits.yml
+- type: FinOps
+  url: finops/cassandra-finops.yml
 - type: SecurityPolicy
   url: https://github.com/apache/cassandra/blob/trunk/SECURITY.md
 - type: CodeOfConduct
