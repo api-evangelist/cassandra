@@ -1,4 +1,4 @@
-# Apache Cassandra (cassandra)
+# Apache Cassandra
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,179 +66,141 @@
 
 Apache Cassandra is a highly scalable, distributed open-source NoSQL database designed to handle massive amounts of data across many commodity servers, providing high availability with no single point of failure. It is governed by the Apache Software Foundation (ASF) under the Apache License 2.0 and is used in production by Netflix, Apple, Bloomberg, Backblaze, and many others. Cassandra exposes its CQL native protocol for clients and a family of HTTP, REST, GraphQL, Document, and gRPC APIs via the Stargate data gateway.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cassandra/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cassandra/refs/heads/main/apis.yml)
+**Areas:** Apache · Big Data · Database · Distributed · NoSQL · Open Source
 
-## Scope
+## Apache Cassandra on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Apache Cassandra is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cassandra/](https://apis.io/providers/cassandra/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (12)
 
-- Apache
-- Big Data
-- Database
-- Distributed
-- NoSQL
-- Open Source
+- [Apache Cassandra CQL Native Protocol](https://apis.io/apis/cassandra/cassandra-cql-native-protocol/) — Cassandra Query Language (CQL) is the primary interface to Apache Cassandra. Clients speak the binary CQL native protocol over TCP (default port 9042).…
+- [Cassandra REST API (Stargate)](https://apis.io/apis/cassandra/cassandra-rest-api-stargate/) — HTTP/JSON REST API for Cassandra provided by the Stargate data gateway. Enables CRUD operations and SQL-like query via REST without the CQL driver.
+- [Cassandra GraphQL API (Stargate)](https://apis.io/apis/cassandra/cassandra-graphql-api-stargate/) — GraphQL endpoint for Cassandra, enabling flexible, typed queries and mutations against Cassandra tables through the Stargate gateway.
+- [Cassandra Document API (Stargate)](https://apis.io/apis/cassandra/cassandra-document-api-stargate/) — Schemaless Document API that stores JSON documents in Cassandra, offering a MongoDB-like developer experience backed by Cassandra.
+- [Cassandra gRPC API (Stargate)](https://apis.io/apis/cassandra/cassandra-grpc-api-stargate/) — High-performance gRPC API for Cassandra through Stargate, designed for low-latency service-to-service communication.
+- [Cassandra JMX Management Interface](https://apis.io/apis/cassandra/cassandra-jmx-metrics/) — Java Management Extensions (JMX) interface for monitoring and administering Cassandra nodes, including metrics, compaction, repairs, and configuration.
+- [Apache Cassandra Columns API](https://apis.io/apis/cassandra/cassandra-columns-api/) — The Columns API from Apache Cassandra — 2 operation(s) for columns.
+- [Apache Cassandra Indexes API](https://apis.io/apis/cassandra/cassandra-indexes-api/) — The Indexes API from Apache Cassandra — 2 operation(s) for indexes.
+- [Apache Cassandra Keyspaces API](https://apis.io/apis/cassandra/cassandra-keyspaces-api/) — The Keyspaces API from Apache Cassandra — 2 operation(s) for keyspaces.
+- [Apache Cassandra Rows API](https://apis.io/apis/cassandra/cassandra-rows-api/) — The Rows API from Apache Cassandra — 3 operation(s) for rows.
+- [Apache Cassandra Tables API](https://apis.io/apis/cassandra/cassandra-tables-api/) — The Tables API from Apache Cassandra — 2 operation(s) for tables.
+- [Apache Cassandra Types API](https://apis.io/apis/cassandra/cassandra-types-api/) — The Types API from Apache Cassandra — 2 operation(s) for types.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-04-23
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Apache Cassandra CQL Native Protocol
+GraphQL schemas.
 
-Cassandra Query Language (CQL) is the primary interface to Apache Cassandra. Clients speak the binary CQL native protocol over TCP (default port 9042). Official drivers are maintained for Java, Python, Go, C/C++, C#, Node.js, Ruby, and Rust.
+- [Apache Cassandra GraphQL API](https://apis.io/graphqls/cassandra/cassandra-graphql/)
 
-- **Human URL:** [https://cassandra.apache.org/doc/latest/cassandra/cql/](https://cassandra.apache.org/doc/latest/cassandra/cql/)
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- CQL
-- Database
-- Native Protocol
-- Query
+- [Cassandra Agentic Access](https://apis.io/agentic-access/cassandra/cassandra-agentic-access/)
 
-#### Properties
+#### Collections (7)
 
-- [Documentation](https://cassandra.apache.org/doc/latest/cassandra/cql/)
-- [Specification](https://github.com/apache/cassandra/blob/trunk/doc/native_protocol_v5.spec)
-- [Reference](https://cassandra.apache.org/doc/latest/cassandra/cql/ddl.html)
-- [Postman Collection](collections/cassandra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cassandra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### Cassandra REST API (Stargate)
+- [Apache Cassandra REST API (via Stargate)](https://apis.io/collections/cassandra/open-cassandra/)
+- [Apache Cassandra REST API (via Stargate) Columns API](https://apis.io/collections/cassandra/open-cassandra-columns-api/)
+- [Apache Cassandra REST API (via Stargate) Columns Indexes API](https://apis.io/collections/cassandra/open-cassandra-indexes-api/)
+- [Apache Cassandra REST API (via Stargate) Columns Keyspaces API](https://apis.io/collections/cassandra/open-cassandra-keyspaces-api/)
+- [Apache Cassandra REST API (via Stargate) Columns Rows API](https://apis.io/collections/cassandra/open-cassandra-rows-api/)
+- [Apache Cassandra REST API (via Stargate) Columns Tables API](https://apis.io/collections/cassandra/open-cassandra-tables-api/)
+- [Apache Cassandra REST API (via Stargate) Columns Types API](https://apis.io/collections/cassandra/open-cassandra-types-api/)
 
-HTTP/JSON REST API for Cassandra provided by the Stargate data gateway. Enables CRUD operations and SQL-like query via REST without the CQL driver.
+#### Security (3)
 
-- **Human URL:** [https://stargate.io/docs/latest/develop/api-rest/](https://stargate.io/docs/latest/develop/api-rest/)
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Cassandra Authentication](https://apis.io/security/cassandra/cassandra-authentication/)
+- [Cassandra Domain Security](https://apis.io/security/cassandra/cassandra-domain-security/)
+- [Cassandra Vulnerability Disclosure](https://apis.io/security/cassandra/cassandra-vulnerability-disclosure/)
 
-- Database
-- REST
-- Stargate
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://stargate.io/docs/latest/develop/api-rest/)
-- [Swagger](https://stargate.io/docs/latest/develop/api-rest/swagger.html)
-- [Source Code](https://github.com/stargate/stargate)
-- [Postman Collection](collections/cassandra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cassandra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Cassandra Plans Pricing](https://apis.io/plans/cassandra/cassandra-plans-pricing/)
 
-### Cassandra GraphQL API (Stargate)
+#### Rate limits (1)
 
-GraphQL endpoint for Cassandra, enabling flexible, typed queries and mutations against Cassandra tables through the Stargate gateway.
+Published request limits.
 
-- **Human URL:** [https://stargate.io/docs/latest/develop/api-graphql/](https://stargate.io/docs/latest/develop/api-graphql/)
+- [Cassandra Rate Limits](https://apis.io/rate-limits/cassandra/cassandra-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- Database
-- GraphQL
-- Stargate
+What the API costs to run, by operation.
 
-#### Properties
+- [Cassandra Finops](https://apis.io/finops/cassandra/cassandra-finops/)
 
-- [Documentation](https://stargate.io/docs/latest/develop/api-graphql/)
-- [Reference](https://stargate.io/docs/latest/develop/api-graphql/graphql-using.html)
-- [Postman Collection](collections/cassandra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cassandra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## Where to find this API
 
-### Cassandra Document API (Stargate)
-
-Schemaless Document API that stores JSON documents in Cassandra, offering a MongoDB-like developer experience backed by Cassandra.
-
-- **Human URL:** [https://stargate.io/docs/latest/develop/api-doc/](https://stargate.io/docs/latest/develop/api-doc/)
-
-#### Tags
-
-- Database
-- Document
-- JSON
-- Stargate
-
-#### Properties
-
-- [Documentation](https://stargate.io/docs/latest/develop/api-doc/)
-- [Reference](https://stargate.io/docs/latest/develop/api-doc/doc-using.html)
-- [Postman Collection](collections/cassandra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cassandra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Cassandra gRPC API (Stargate)
-
-High-performance gRPC API for Cassandra through Stargate, designed for low-latency service-to-service communication.
-
-- **Human URL:** [https://stargate.io/docs/latest/develop/api-grpc/](https://stargate.io/docs/latest/develop/api-grpc/)
-
-#### Tags
-
-- Database
-- gRPC
-- Stargate
-
-#### Properties
-
-- [Documentation](https://stargate.io/docs/latest/develop/api-grpc/)
-- [Protocol](https://github.com/stargate/stargate/tree/main/grpc/proto)
-- [Postman Collection](collections/cassandra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cassandra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Cassandra JMX Management Interface
-
-Java Management Extensions (JMX) interface for monitoring and administering Cassandra nodes, including metrics, compaction, repairs, and configuration.
-
-- **Human URL:** [https://cassandra.apache.org/doc/latest/cassandra/operating/metrics.html](https://cassandra.apache.org/doc/latest/cassandra/operating/metrics.html)
-
-#### Tags
-
-- JMX
-- Management
-- Metrics
-- Monitoring
-
-#### Properties
-
-- [Documentation](https://cassandra.apache.org/doc/latest/cassandra/operating/metrics.html)
-- [Operations Guide](https://cassandra.apache.org/doc/latest/cassandra/operating/)
-- [Postman Collection](collections/cassandra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cassandra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://cassandra.apache.org/)
 - [Documentation](https://cassandra.apache.org/doc/latest/)
-- [Getting Started](https://cassandra.apache.org/doc/latest/cassandra/getting_started/)
-- [Download](https://cassandra.apache.org/download/)
-- [Source Code](https://github.com/apache/cassandra)
-- [Git Hub](https://github.com/apache/cassandra)
-- [Issue Tracker](https://issues.apache.org/jira/projects/CASSANDRA)
+- [Getting started](https://cassandra.apache.org/doc/latest/cassandra/getting_started/)
 - [Blog](https://cassandra.apache.org/blog/)
-- [Community](https://cassandra.apache.org/community/)
-- [Mailing List](https://cassandra.apache.org/community/#discussions)
-- [Slack](https://cassandra.apache.org/community/#slack)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/cassandra)
-- [X (Twitter)](https://twitter.com/cassandra)
-- [LinkedIn](https://www.linkedin.com/company/apache-cassandra/)
-- [YouTube](https://www.youtube.com/@PlanetCassandra)
-- [Docker Hub](https://hub.docker.com/_/cassandra)
-- [Package Registry](https://central.sonatype.com/artifact/org.apache.cassandra/cassandra-all)
-- [License](https://www.apache.org/licenses/LICENSE-2.0)
-- [Governance](https://www.apache.org/foundation/governance/)
-- [Security Policy](https://cassandra.apache.org/_/security.html)
-- [Privacy Policy](https://www.apache.org/privacy/)
-- [Terms of Service](https://www.apache.org/foundation/license-faq.html)
-- [Ecosystem](https://cassandra.apache.org/_/ecosystem.html)
-- [Third Party](https://cassandra.apache.org/_/ecosystem.html)
-- [Features](undefined)
-- [Use Cases](undefined)
+- [Terms of service](https://www.apache.org/foundation/license-faq.html)
+- [Privacy policy](https://www.apache.org/privacy/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Apache Cassandra Community
-**Email:** dev@cassandra.apache.org
+**Kin Score 36.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 42.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 18.4 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cassandra/](https://apis.io/providers/cassandra/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apache Cassandra: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cassandra/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
